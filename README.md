@@ -1,50 +1,54 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个基于react + vite + antd的后台管理系统。它使用了最新的接口技术栈，内置了i18n国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，可以帮助您快速搭建企业级中后台产品原型。相信无论您的需求是什么，本项目都能对您有所帮助。
 
-Currently, two official plugins are available:
+## 功能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- eslint + prettier 规范代码
+- git-cz + commitlint 规范git commit
+- stylelint 规范样式
 
-## Expanding the ESLint configuration
+## 开发
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+# 克隆项目
+git clone https://github.com/Buzaisonghua/z.git
 
-- Configure the top-level `parserOptions` property like this:
+# 进入项目目录
+cd react-vite-admin
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+# 安装依赖
+pnpm i
+
+# 启动服务
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 提交
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+```bash
+# 本地提交 git pull + git add . + git commit
+npm run cz
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
+# 提交到远程
+git push
+```
+
+## 其它
+
+```bash
+# 预览
+npm run preview
+
+# 代码格式检查
+npm run lint
+
+# 代码格式检查并修复
+npm run lint:fix
+
+# 检查样式
+npm run lint:style
+
+# 样式检查并修复
+npm run lint:styleFix
 ```
