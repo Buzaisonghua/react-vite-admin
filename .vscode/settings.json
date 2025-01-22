@@ -2,10 +2,11 @@
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": true,
-
+  "stylelint.enable": true,
   // Auto fix
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
     "source.organizeImports": "never"
   },
 
@@ -51,8 +52,8 @@
   "explorer.fileNesting.patterns": {
     "package.json": "*-lock.yaml, yarn.lock",
     "tsconfig.json": "tsconfig.*.json",
-    "vitest.config.mts": "vitest.setup.ts, vitest.workspace.ts",
-    ".eslintrc.json": ".eslintcache, .eslintignore",
+    "eslint.config.js": ".eslintcache, .eslintignore",
+    ".stylelintrc.json": ".stylelint*",
     ".gitignore": ".git*"
   }
 }
