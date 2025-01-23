@@ -1,10 +1,12 @@
-import { Button } from 'antd';
+import Router from '@/routers/index';
+import { HashRouter } from 'react-router-dom';
+// import { useEffect, useState } from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <Button type="primary">Button</Button>
-    </div>
+    <HashRouter>
+      <Router />
+    </HashRouter>
   );
 }
 
