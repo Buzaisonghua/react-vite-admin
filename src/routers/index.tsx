@@ -9,9 +9,7 @@ const rootRouter: RouteNamespace.RouteRecord[] = [
     path: '/login',
     element: <Login />,
     meta: {
-      requiresAuth: false,
       title: '登录页',
-      key: 'login',
     },
   },
   {

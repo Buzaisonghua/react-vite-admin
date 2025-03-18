@@ -6,14 +6,16 @@ declare namespace RouteNamespace {
     /** 组件 */
     element?: React.ReactNode
     /** 路由描述 */
-    meta?: MetaProps
+    meta?: MateRoute
     /** 子路由 */
     children?: RouteRecord[]
   }
-  interface RouteMate {
+  interface MateRoute {
     /** 浏览器标题 */
     title: string
     /** menu路由图标 */
     icon?: string
+    /** 是否需要登录 */
+    needLogin?: boolean
   }
 }
