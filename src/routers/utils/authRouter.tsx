@@ -1,15 +1,22 @@
 import { rootRouter } from '@/routers';
 import { searchRoute } from '@/utils';
 import { getToken } from '@/utils/token';
+import { useDispatch, useStore } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 
 function AuthRouter(props: { children: JSX.Element }) {
   const { pathname } = useLocation();
   const nowRoute = searchRoute(pathname, rootRouter);
   const needLogin = nowRoute?.meta?.needLogin;
-
-  /** 判断是否有Token 有token且目标登录页 重定向到主页 */
   const token = getToken();
+  const dispatch = useDispatch();
+  const { user: { id } }: { user: UsersNamespace.UserReq } = useStore().getState() as unknown as { user: UsersNamespace.UserReq };
+
+  /** 已登录 但是没有用户信息 */
+  if (token && !id) {
+    dispatch({ type: 'user/getUserStateToken' });
+  }
+  /** 判断是否有Token 有token且目标登录页 重定向到主页 */
   if (token && pathname === '/login')
     return <Navigate to="/" replace />;
 

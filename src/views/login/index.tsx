@@ -1,61 +1,77 @@
 import type { FormProps } from 'antd';
+import { Login } from '@/api';
+import { setToken } from '@/utils/token';
 import { Button, Form, Input } from 'antd';
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import './index.less';
 
-interface FieldType {
-  username?: string
-  password?: string
+function LoginComponent() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onFinish: FormProps<UsersNamespace.LoginReq>['onFinish'] = async (values) => {
+    const { data } = await Login(values);
+    dispatch({
+      type: 'user/setUserState',
+      payload: {
+        ...data,
+      },
+    });
+    setToken(data.token);
+    navigate('/dashboard');
+  };
+
+  const onFinishFailed: FormProps<UsersNamespace.LoginReq>['onFinishFailed'] = (errorInfo) => {
+    console.error('Failed:', errorInfo);
+  };
+
+  const loginForm = {
+    username: 'admin',
+    password: '123456',
+  };
+
+  return (
+    <div className="login-container">
+      <div className="login-box">
+        <Form
+          name="basic"
+          layout="vertical"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 24 }}
+          style={{ maxWidth: 600, minWidth: 500 }}
+          initialValues={loginForm}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+
+          <Form.Item<UsersNamespace.LoginReq>
+            label="Username"
+            name="username"
+            rules={[{ required: true, message: 'Please input your username!' }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item<UsersNamespace.LoginReq>
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: 'Please input your password!' }]}
+          >
+            <Input.Password />
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit" style={{ width: '100%', margin: 0 }}>
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+
+    </div>
+  );
 }
 
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-  // eslint-disable-next-line no-console
-  console.log('Success:', values);
-};
-
-const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-  console.error('Failed:', errorInfo);
-};
-
-const Login: React.FC = () => (
-  <div className="login-container">
-    <div className="login-box">
-      <Form
-        name="basic"
-        layout="vertical"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 24 }}
-        style={{ maxWidth: 600, minWidth: 500 }}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <Form.Item<FieldType>
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item<FieldType>
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item>
-          <Button type="primary" htmlType="submit" style={{ width: '100%', margin: 0 }}>
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
-
-  </div>
-);
-
-export default Login;
+export default LoginComponent;
