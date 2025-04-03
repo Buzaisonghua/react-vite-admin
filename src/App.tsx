@@ -1,12 +1,19 @@
 import Router from '@/routers/index';
-import { BrowserRouter } from 'react-router-dom';
+import AuthRouter from '@/routers/utils/authRouter';
+import store from '@/store';
 // import { useEffect, useState } from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <AuthRouter>
+          <Router />
+        </AuthRouter>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

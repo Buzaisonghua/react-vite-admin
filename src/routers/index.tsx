@@ -4,7 +4,7 @@ import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import lazyLoad from './utils/lazyLoad';
 
-const rootRouter: RouteNamespace.RouteRecord[] = [
+export const rootRouter: RouteNamespace.RouteRecord[] = [
   {
     path: '/login',
     element: <Login />,
@@ -15,15 +15,40 @@ const rootRouter: RouteNamespace.RouteRecord[] = [
   {
     path: '/',
     element: <Layout />,
+    redirect: '/dashboard',
+    meta: {
+      needLogin: true,
+    },
     children: [
       {
-        path: '/dashboard',
+        path: 'dashboard',
         element: lazyLoad(React.lazy(() => import('@/views/dashboard'))),
         meta: {
           title: 'dashboard',
+          needLogin: true,
         },
       },
-
+      {
+        path: 'chart',
+        element: lazyLoad(React.lazy(() => import('@/views/chart'))),
+        meta: {
+          title: 'chart',
+          needLogin: true,
+        },
+        children: [
+          {
+            path: 'line',
+            element: lazyLoad(React.lazy(() => import('@/views/chart/line'))),
+            meta: {
+              needLogin: true,
+            },
+          },
+          {
+            path: 'pie',
+            element: lazyLoad(React.lazy(() => import('@/views/chart/pie'))),
+          },
+        ],
+      },
     ],
   },
   {

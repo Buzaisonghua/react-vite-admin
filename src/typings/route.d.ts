@@ -9,10 +9,12 @@ declare namespace RouteNamespace {
     meta?: MateRoute
     /** 子路由 */
     children?: RouteRecord[]
+    /** 重定向 */
+    redirect?: string
   }
   interface MateRoute {
     /** 浏览器标题 */
-    title: string
+    title?: string
     /** menu路由图标 */
     icon?: string
     /** 是否需要登录 */
