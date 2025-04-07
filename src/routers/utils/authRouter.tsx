@@ -1,4 +1,5 @@
 import { rootRouter } from '@/routers';
+import { fetchUserSatateToken } from '@/store/modules/user';
 import { searchRoute } from '@/utils';
 import { getToken } from '@/utils/token';
 import { useDispatch, useStore } from 'react-redux';
@@ -14,7 +15,7 @@ function AuthRouter(props: { children: JSX.Element }) {
 
   /** 已登录 但是没有用户信息 */
   if (token && !id) {
-    dispatch({ type: 'user/getUserStateToken' });
+    dispatch(fetchUserSatateToken());
   }
   /** 判断是否有Token 有token且目标登录页 重定向到主页 */
   if (token && pathname === '/login')

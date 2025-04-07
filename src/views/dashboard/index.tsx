@@ -1,12 +1,17 @@
 import { Button } from 'antd';
+import { useSelector } from 'react-redux';
 
-function dashboard() {
+function Dashboard() {
+  const user = useSelector((state: any) => state.user);
   return (
     <div>
-      <div>dashboard</div>
+      <div>
+        dashboard
+        {user.username}
+      </div>
       <Button type="primary">Primary Button</Button>
     </div>
   );
 }
 
-export default dashboard;
+export default Dashboard;

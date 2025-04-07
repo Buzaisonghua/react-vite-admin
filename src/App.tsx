@@ -1,7 +1,6 @@
 import Router from '@/routers/index';
 import AuthRouter from '@/routers/utils/authRouter';
 import store from '@/store';
-// import { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
