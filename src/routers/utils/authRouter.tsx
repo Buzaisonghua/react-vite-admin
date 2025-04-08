@@ -15,7 +15,7 @@ function AuthRouter(props: { children: JSX.Element }) {
 
   /** 已登录 但是没有用户信息 */
   if (token && !id) {
-    dispatch(fetchUserSatateToken());
+    dispatch(fetchUserSatateToken() as unknown as any);
   }
   /** 判断是否有Token 有token且目标登录页 重定向到主页 */
   if (token && pathname === '/login')

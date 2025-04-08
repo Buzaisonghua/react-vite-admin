@@ -19,5 +19,7 @@ declare namespace RouteNamespace {
     icon?: string
     /** 是否需要登录 */
     needLogin?: boolean
+    /** 是否在菜单中显示 */
+    menu?: boolean
   }
 }

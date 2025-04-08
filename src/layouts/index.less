@@ -5,9 +5,13 @@
     height: 100%;
     background: #fff;
     position: relative;
-    .menu-list {
-      height: calc(100% - 40px);
-      overflow-y: auto;
+    .scrollbar {
+      box-sizing: border-box;
+      padding-bottom: 50px;
+      > div:nth-child(1) {
+        overflow-x: hidden !important;
+        overflow-y: auto;
+      }
     }
     .collapsed-box {
       position: absolute;
@@ -15,7 +19,10 @@
       right: 0;
       bottom: 0;
       height: 40px;
-      background: red;
+      border-top: 1px solid rgba(5, 5, 5, 0.06);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   .layout-content {

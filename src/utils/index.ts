@@ -16,3 +16,11 @@ export function searchRoute(path: string, routes: RouteNamespace.RouteRecord[], 
     }
   }
 }
+
+/**
+ * @param {string} path
+ * @returns {boolean}
+ */
+export function isExternal(path: string) {
+  return /^(?:https?:|mailto:|tel:)/.test(path);
+}

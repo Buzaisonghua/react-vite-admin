@@ -26,6 +26,8 @@ export const rootRouter: RouteNamespace.RouteRecord[] = [
         meta: {
           title: 'dashboard',
           needLogin: true,
+          menu: true,
+          icon: 'wind-cry',
         },
       },
       {
@@ -34,6 +36,8 @@ export const rootRouter: RouteNamespace.RouteRecord[] = [
         meta: {
           title: 'chart',
           needLogin: true,
+          menu: true,
+          icon: 'wind-cry',
         },
         children: [
           {
@@ -41,11 +45,18 @@ export const rootRouter: RouteNamespace.RouteRecord[] = [
             element: lazyLoad(React.lazy(() => import('@/views/chart/line'))),
             meta: {
               needLogin: true,
+              menu: true,
+              icon: 'wind-cry',
             },
           },
           {
             path: 'pie',
             element: lazyLoad(React.lazy(() => import('@/views/chart/pie'))),
+            meta: {
+              needLogin: true,
+              menu: true,
+              icon: 'wind-cry',
+            },
           },
         ],
       },
