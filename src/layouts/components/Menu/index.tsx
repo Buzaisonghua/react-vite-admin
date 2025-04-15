@@ -1,3 +1,4 @@
+import SvgIcon from '@/icons/SvgIcon';
 import { rootRouter } from '@/routers';
 import {
   MenuFoldOutlined,
@@ -7,6 +8,7 @@ import { Menu } from 'antd';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import './index.less';
 
 // type MenuTheme = GetProp<MenuProps, 'theme'>;
 
@@ -23,20 +25,30 @@ function setRootRouter(rootRouter: RouteNamespace.RouteRecord[], menuList: MenuI
     if (item.meta?.menu) {
       const data: MenuItem = {
         key: item.path || '',
-        icon: item.meta.icon,
+        icon: <SvgIcon iconClass={item.meta.icon} />,
         label: item.meta.title,
       };
       if (item.children) {
         data.children = [];
         setRootRouter(item.children, data.children);
       }
-      // else {
-      //   delete data.children;
-      // }
       menuList.push(data);
     }
     if (!item.meta?.menu && item.children) {
       setRootRouter(item.children, menuList);
+    }
+  }
+}
+
+/** 获取当前路由 */
+const defaultSelectedKeys: string[] = [];
+function getCurrentRoute(menuList: MenuItem[], path: string) {
+  for (const item of menuList) {
+    if (path.includes(item.key)) {
+      defaultSelectedKeys.push(item.key);
+    }
+    if (item.children) {
+      getCurrentRoute(item.children, path);
     }
   }
 }
@@ -49,6 +61,8 @@ function MenuComponent() {
   // 路由信息
   const menuList: MenuItem[] = [];
   setRootRouter(rootRouter, menuList);
+
+  getCurrentRoute(menuList, window.location.pathname);
 
   const clickChangeCollapsed = () => {
     dispatch({ type: 'collapsed/changeCollapsed' });
@@ -69,19 +83,20 @@ function MenuComponent() {
         autoHeight
         autoHeightMin={0}
         autoHeightMax="100%"
-        thumbMinSize={30}
+        thumbMinSize={16}
         universal
         style={{ width: '100%', height: '100%' }}
         className="scrollbar"
       >
         <Menu
-          defaultSelectedKeys={['']}
-          defaultOpenKeys={['']}
+          defaultSelectedKeys={defaultSelectedKeys}
+          defaultOpenKeys={collapsed ? [] : defaultSelectedKeys}
           mode="inline"
           theme="light"
           inlineCollapsed={collapsed}
           items={menuList}
           onClick={clickMenuChangeRoute}
+          className="menu-list"
         />
       </Scrollbars>
 
@@ -95,57 +110,3 @@ function MenuComponent() {
 }
 
 export default MenuComponent;
-
-// type MenuItem = Required<MenuProps>['items'][number];
-
-// const items: MenuItem[] = [
-//   { key: '1', icon: <PieChartOutlined />, label: 'Option 1' },
-//   { key: '2', icon: <DesktopOutlined />, label: 'Option 2' },
-//   { key: '3', icon: <ContainerOutlined />, label: 'Option 3' },
-//   { key: '11', icon: <PieChartOutlined />, label: 'Option 1' },
-//   { key: '22', icon: <DesktopOutlined />, label: 'Option 2' },
-//   { key: '33', icon: <ContainerOutlined />, label: 'Option 3' },
-//   { key: '14', icon: <PieChartOutlined />, label: 'Option 1' },
-//   { key: '25', icon: <DesktopOutlined />, label: 'Option 2' },
-//   { key: '36', icon: <ContainerOutlined />, label: 'Option 3' },
-//   { key: '17', icon: <PieChartOutlined />, label: 'Option 1' },
-//   { key: '28', icon: <DesktopOutlined />, label: 'Option 2' },
-//   { key: '39', icon: <ContainerOutlined />, label: 'Option 3' },
-//   { key: '111', icon: <PieChartOutlined />, label: 'Option 1' },
-//   { key: '212', icon: <DesktopOutlined />, label: 'Option 2' },
-//   { key: '313', icon: <ContainerOutlined />, label: 'Option 3' },
-//   { key: '114', icon: <PieChartOutlined />, label: 'Option 1' },
-//   { key: '215', icon: <DesktopOutlined />, label: 'Option 2' },
-//   { key: '3123', icon: <ContainerOutlined />, label: 'Option 3' },
-//   { key: '1112', icon: <PieChartOutlined />, label: 'Option 1' },
-//   { key: '11232', icon: <DesktopOutlined />, label: 'Option 2' },
-//   { key: '3999999', icon: <ContainerOutlined />, label: 'Option 3' },
-//   {
-//     key: 'sub1',
-//     label: 'Navigation One',
-//     icon: <MailOutlined />,
-//     children: [
-//       { key: '5', label: 'Option 5' },
-//       { key: '6', label: 'Option 6' },
-//       { key: '7', label: 'Option 7' },
-//       { key: '8', label: 'Option 8' },
-//     ],
-//   },
-//   {
-//     key: 'sub2',
-//     label: 'Navigation Two',
-//     icon: <AppstoreOutlined />,
-//     children: [
-//       { key: '9', label: 'Option 9' },
-//       { key: '10ddsd', label: 'Option 10' },
-//       {
-//         key: 'sub3',
-//         label: 'Submenu',
-//         children: [
-//           { key: '111111111111111111111', label: 'Option 11' },
-//           { key: '12a', label: 'Option 12' },
-//         ],
-//       },
-//     ],
-//   },
-// ];

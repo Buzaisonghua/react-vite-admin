@@ -12,6 +12,7 @@
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
+    "types": ["vite/client"],
     "allowImportingTsExtensions": true,
     "allowJs": false,
     "strict": true /* Enable all strict type-checking options. */,

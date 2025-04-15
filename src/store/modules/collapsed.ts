@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const collapsed = createSlice({
   name: 'collapsed',
   initialState: {
-    collapsed: true,
+    collapsed: false,
   },
   reducers: {
     changeCollapsed: (state) => {

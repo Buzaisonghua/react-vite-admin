@@ -1,0 +1,34 @@
+.menu-box {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  display: inline-block;
+  padding: 56px 0 50px;
+  border-right: 1px solid rgba(5, 5, 5, 0.06);
+  .scrollbar {
+    box-sizing: border-box;
+    > div:nth-child(1) {
+      overflow-x: hidden !important;
+      overflow-y: auto;
+    }
+  }
+  .collapsed-box {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .menu-list.ant-menu-inline {
+    width: 200px;
+  }
+  .ant-menu.ant-menu-root.menu-list {
+    border-inline-end: 0;
+  }
+  .ant-menu {
+    background: transparent;
+  }
+}

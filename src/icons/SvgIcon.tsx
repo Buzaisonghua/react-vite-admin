@@ -33,7 +33,6 @@ function SvgIcon(props: any) {
 
   return (
     <>
-      {isExternalBoolean ? '1' : '2'}
       {
         isExternalBoolean
           ? (

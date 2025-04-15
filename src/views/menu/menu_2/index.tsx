@@ -1,12 +1,10 @@
 import { Outlet } from 'react-router-dom';
 
-function Chart() {
+export default function Menu_2() {
   return (
-    <>
-      Chart
+    <div>
+      <h2>Menu_2</h2>
       <Outlet />
-    </>
+    </div>
   );
 }
-
-export default Chart;

@@ -1,22 +1,23 @@
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import Header from './components/Header';
+import LayoutBg from './components/LayoutBg';
 import Menu from './components/Menu';
 import './index.less';
 
-function Layout() {
-  const dispatch = useDispatch();
-  const clickChangeCollapsed = () => {
-    dispatch({ type: 'collapsed/changeCollapsed' });
-  };
+function LayoutContainer() {
+  // 导航信息收缩
+  const { collapsed } = useSelector((state: any) => state.collapsed);
   return (
-    <div className="layout-container">
+    <>
+      <Header />
       <Menu />
-      <div className="layout-content">
-        <div className="tets" onClick={clickChangeCollapsed}>点击</div>
-        <div><Outlet /></div>
+      <LayoutBg />
+      <div className={`layout-content ${collapsed ? 'collapsed-close' : 'collapsed-open'}`}>
+        <Outlet />
       </div>
-    </div>
+    </>
   );
 }
 
-export default Layout;
+export default LayoutContainer;
