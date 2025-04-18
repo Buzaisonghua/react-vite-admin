@@ -1,6 +1,6 @@
 import type { MenuProps } from 'antd';
 import { removeToken } from '@/utils/token';
-import { SketchOutlined } from '@ant-design/icons';
+import { GithubOutlined, SketchOutlined } from '@ant-design/icons';
 import { Dropdown } from 'antd';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,10 +19,18 @@ export default function Avatar() {
   const items: MenuProps['items'] = [
     {
       key: '1',
-      label: 'My Account',
+      label: 'BZSH ADMIN',
       disabled: true,
     },
-
+    {
+      key: 'github',
+      icon: <GithubOutlined />,
+      label: (
+        <a href="https://github.com/Buzaisonghua/react-vite-admin" target="_blank">
+          github
+        </a>
+      ),
+    },
     {
       key: 'logout',
       label: (

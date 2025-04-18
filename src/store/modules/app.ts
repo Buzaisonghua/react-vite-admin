@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // This slice manages the collapsed state of the sidebar
-export const collapsed = createSlice({
-  name: 'collapsed',
+export const app = createSlice({
+  name: 'app',
   initialState: {
     collapsed: false,
   },
@@ -13,4 +13,4 @@ export const collapsed = createSlice({
   },
 });
 
-export default collapsed.reducer;
+export default app.reducer;

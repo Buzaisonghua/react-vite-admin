@@ -38,3 +38,8 @@ export async function copy(text: string) {
     message.error('复制失败');
   }
 }
+
+// 设置title
+export function setDocumentTitle(title: string) {
+  document.title = title;
+}

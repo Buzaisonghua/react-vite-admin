@@ -1,6 +1,6 @@
 import { rootRouter } from '@/routers';
 import { fetchUserSatateToken } from '@/store/modules/user';
-import { searchRoute } from '@/utils';
+import { searchRoute, setDocumentTitle } from '@/utils';
 import { getToken } from '@/utils/token';
 import { useDispatch, useStore } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
@@ -12,6 +12,8 @@ function AuthRouter(props: { children: JSX.Element }) {
   const token = getToken();
   const dispatch = useDispatch();
   const { user: { id } }: { user: UsersNamespace.UserReq } = useStore().getState() as unknown as { user: UsersNamespace.UserReq };
+
+  setDocumentTitle(nowRoute?.meta?.title || 'BZSH ADMIN');
 
   /** 已登录 但是没有用户信息 */
   if (token && !id) {

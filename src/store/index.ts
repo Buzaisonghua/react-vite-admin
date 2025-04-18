@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import collapsed from './modules/collapsed';
+import app from './modules/app';
 import user from './modules/user';
 
 const reducers = {
   user,
-  collapsed,
+  app,
 };
 
 const store = configureStore({

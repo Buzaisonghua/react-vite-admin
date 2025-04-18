@@ -57,7 +57,7 @@ function MenuComponent() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // 导航信息收缩
-  const { collapsed } = useSelector((state: any) => state.collapsed);
+  const { collapsed } = useSelector((state: any) => state.app);
   // 路由信息
   const menuList: MenuItem[] = [];
   setRootRouter(rootRouter, menuList);
@@ -65,7 +65,7 @@ function MenuComponent() {
   getCurrentRoute(menuList, window.location.pathname);
 
   const clickChangeCollapsed = () => {
-    dispatch({ type: 'collapsed/changeCollapsed' });
+    dispatch({ type: 'app/changeCollapsed' });
   };
 
   // 路由跳转
