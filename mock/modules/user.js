@@ -8,12 +8,12 @@ function login(req) {
   let code = 20000;
   let msg = '登录成功';
   let data = {
-    username: Random.cname(),
+    userName: Random.cname(),
     token: Random.guid(),
     message: 'Login successfully.',
   };
 
-  if (body.username !== 'admin' || body.password !== '123456') {
+  if (body.userName !== 'admin' || body.password !== '123456') {
     code = 20001;
     msg = '账号或密码错误';
     data = {};
@@ -43,7 +43,7 @@ function token(req) {
     code: 20000,
     data: {
       req,
-      username: Random.cname(),
+      userName: Random.cname(),
       token: Random.guid(),
       message: 'success',
       id: Random.guid(),

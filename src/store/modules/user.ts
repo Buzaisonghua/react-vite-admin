@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 // 定义初始状态
 const initialState: StoreNamespace.UserStateMode = {
-  username: '',
+  userName: '',
   token: '',
   id: '',
   role: 0,
@@ -27,7 +27,7 @@ export const user = createSlice({
   reducers: {
     // 登录
     setUserState: (state, action) => {
-      state.username = action.payload.username;
+      state.userName = action.payload.userName;
       state.token = action.payload.token;
       state.id = action.payload.id;
       state.role = action.payload.role;
@@ -37,7 +37,7 @@ export const user = createSlice({
   // 通过token获取用户信息
   extraReducers: (builder) => {
     builder.addCase(fetchUserSatateToken.fulfilled, (state, action) => {
-      state.username = action.payload.username;
+      state.userName = action.payload.userName;
       state.token = action.payload.token;
       state.id = action.payload.id;
       state.role = action.payload.role;

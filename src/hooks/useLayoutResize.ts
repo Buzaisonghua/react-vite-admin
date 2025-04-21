@@ -32,5 +32,6 @@ export function useLayoutResize() {
     return () => {
       removeResizeListener();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }

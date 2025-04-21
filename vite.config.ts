@@ -17,7 +17,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       react(),
       UnoCSS(),
       createSvgIconsPlugin({
-
         iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
       }),
     ],

@@ -1,12 +1,12 @@
 declare namespace UsersNamespace {
   interface LoginReq {
-    username: string
+    userName: string
     password: string
   }
 
   interface UserReq {
     // 用户名
-    username: string
+    userName: string
     // token
     token: string
     // 用户id

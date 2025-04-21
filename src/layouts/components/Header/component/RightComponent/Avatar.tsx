@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Avatar() {
   const user = useSelector((state: any) => state.user);
-  const { avatar, username } = user;
+  const { avatar, userName } = user;
   const navigate = useNavigate();
 
   /** logout */
@@ -50,7 +50,7 @@ export default function Avatar() {
           className="avatar-image"
           src={avatar}
         />
-        <span className="username">{ username }</span>
+        <span className="username">{ userName }</span>
       </div>
     </Dropdown>
   );

@@ -27,7 +27,7 @@ function LoginComponent() {
   };
 
   const loginForm = {
-    username: 'admin',
+    userName: 'admin',
     password: '123456',
   };
 
@@ -48,7 +48,7 @@ function LoginComponent() {
 
           <Form.Item<UsersNamespace.LoginReq>
             label="Username"
-            name="username"
+            name="userName"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
             <Input />
