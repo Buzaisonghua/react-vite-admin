@@ -101,7 +101,7 @@ function LineChart() {
     animationEasing: 'cubicOut', // 缓动效果
   };
   const clickOptions = () => {
-    option.series[0].data = [2201, 1812, 1911, 1134, 1501, 1201, 1101, 1251, 1451, 1221, 1651, 1221];
+    // option.series[0].data = [2201, 1812, 1911, 1134, 1501, 1201, 1101, 1251, 1451, 1221, 1651, 1221];
   };
   return (
     <>
