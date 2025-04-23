@@ -1,20 +1,20 @@
-import defaultSettings from '@/settings';
 import { debounce } from 'lodash-es';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 export function useLayoutResize() {
   const { body } = document;
-  const WIDTH = defaultSettings.sidebarMoblieWidth;
+  const dispatch = useDispatch();
 
-  const $_isMobile = () => {
+  const $_getWidth = () => {
     const rect = body.getBoundingClientRect();
-    return rect.width - 1 < WIDTH;
+    return rect.width;
   };
 
   const $_resizeHandler = debounce(() => {
     if (!document.hidden) {
-      const isMobile = $_isMobile();
-      console.error('isMobile', isMobile);
+      const width = $_getWidth();
+      dispatch({ type: 'app/changeMobileState', payload: { width } });
     }
   }, 100);
 
@@ -28,6 +28,7 @@ export function useLayoutResize() {
   }
 
   useEffect(() => {
+    $_resizeHandler();
     resizeListener();
     return () => {
       removeResizeListener();

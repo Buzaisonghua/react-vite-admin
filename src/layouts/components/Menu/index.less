@@ -1,3 +1,28 @@
+.menu-main {
+  transition: all 0.3s ease;
+  &.collapsed-close {
+    width: 80px;
+  }
+  &.collapsed-open {
+    width: 200px;
+  }
+  &.mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    &.mobile-close {
+      width: 200px;
+      transform: translateX(-200px);
+    }
+    &.mobile-open {
+      width: 200px;
+      background: #fff;
+      z-index: 3;
+      transform: translateX(0);
+    }
+  }
+}
 .menu-box {
   height: 100%;
   position: fixed;
@@ -31,4 +56,13 @@
   .ant-menu {
     background: transparent;
   }
+}
+.menu-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.45);
 }

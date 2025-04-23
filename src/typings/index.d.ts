@@ -14,6 +14,8 @@ declare namespace Global {
     size: EpPropMergeType
     /** 宽度低于多少认定移动端 */
     sidebarMoblieWidth: number
+    /** 宽度多少导航认定折叠 */
+    sidebarCollapsedWidth: number
     /** 是否显示 tagsView */
     tagsView: boolean
   }

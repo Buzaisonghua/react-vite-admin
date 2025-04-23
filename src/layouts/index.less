@@ -1,12 +1,22 @@
-.layout-content {
-  transition: all 0.3s ease;
+.layout-main {
+  display: flex;
   height: calc(100% - 56px);
+}
+.layout-content {
+  flex: 1;
   overflow: visible;
   display: flow-root;
+  &.layout-mask {
+    overflow: hidden;
+  }
 }
 .collapsed-open {
-  padding-left: 200px;
+  // padding-left: 200px;
 }
 .collapsed-close {
-  padding-left: 80px;
+  // padding-left: 80px;
+}
+.layout-mobile {
+  // padding-left: 0;
+  // transition: all 0 ease;
 }
