@@ -1,6 +1,9 @@
+import defaultSettings from '@/settings';
 import { debounce } from 'lodash-es';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+
+const { sidebarMoblieWidth, sidebarCollapsedWidth } = defaultSettings;
 
 export function useLayoutResize() {
   const { body } = document;
@@ -14,7 +17,28 @@ export function useLayoutResize() {
   const $_resizeHandler = debounce(() => {
     if (!document.hidden) {
       const width = $_getWidth();
-      dispatch({ type: 'app/changeMobileState', payload: { width } });
+      if (width > sidebarCollapsedWidth) {
+        // desktop
+        dispatch({ type: 'app/changeCollapsed', payload: { type: false } });
+        setTimeout(() => {
+          dispatch({ type: 'app/changeMobile', payload: { type: false } });
+        });
+      }
+      else if (width > sidebarMoblieWidth && width < sidebarCollapsedWidth) {
+        // ipad
+        dispatch({ type: 'app/changeCollapsed', payload: { type: true } });
+        setTimeout(() => {
+          dispatch({ type: 'app/changeMobile', payload: { type: false } });
+        });
+      }
+      else {
+        // mobile
+        dispatch({ type: 'app/changeCollapsed', payload: { type: false } });
+        setTimeout(() => {
+          dispatch({ type: 'app/changeMobile', payload: { type: true } });
+        });
+      }
+      // dispatch({ type: 'app/changeMobileState', payload: { width } });
     }
   }, 100);
 

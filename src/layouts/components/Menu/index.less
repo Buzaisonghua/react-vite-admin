@@ -1,5 +1,6 @@
 .menu-main {
-  transition: all 0.3s ease;
+  transition: width 0.3s ease;
+  position: relative;
   &.collapsed-close {
     width: 80px;
   }
@@ -9,15 +10,21 @@
   &.mobile {
     position: absolute;
     top: 0;
-    left: 0;
+    // left: 0;
     bottom: 0;
+    background: #fff;
+    .menu-box {
+      padding: 0;
+      .collapsed-box {
+        display: none;
+      }
+    }
     &.mobile-close {
-      width: 200px;
+      width: 80px;
       transform: translateX(-200px);
     }
     &.mobile-open {
       width: 200px;
-      background: #fff;
       z-index: 3;
       transform: translateX(0);
     }

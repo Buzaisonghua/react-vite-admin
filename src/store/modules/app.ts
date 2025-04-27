@@ -15,8 +15,13 @@ export const app = createSlice({
     mobileCollapsed: false,
   },
   reducers: {
-    changeCollapsed: (state) => {
-      state.collapsed = !state.collapsed;
+    changeCollapsed: (state, action) => {
+      const { type } = action.payload;
+      state.collapsed = type;
+    },
+    changeMobile: (state, action) => {
+      const { type } = action.payload;
+      state.mobile = type;
     },
     changeMobileState: (state, action) => {
       const { width } = action.payload;

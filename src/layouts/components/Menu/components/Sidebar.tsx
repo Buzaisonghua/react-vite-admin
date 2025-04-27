@@ -56,7 +56,7 @@ export default React.memo((props: { collapsed: boolean }) => {
   const { collapsed } = props;
 
   function clickChangeCollapsed() {
-    dispatch({ type: 'app/changeCollapsed' });
+    dispatch({ type: 'app/changeCollapsed', payload: { type: !collapsed } });
   }
 
   // 路由跳转
