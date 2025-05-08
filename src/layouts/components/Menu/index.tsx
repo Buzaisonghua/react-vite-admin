@@ -15,10 +15,8 @@ function MenuComponent() {
     <>
       <div className={
         `
-      menu-main
-      ${mobile
-      ? mobileCollapsed ? 'mobile-open mobile' : 'mobile-close mobile'
-      : collapsed ? 'collapsed-close' : 'collapsed-open'}
+        menu-main
+        ${mobile ? mobileCollapsed ? 'mobile-open mobile' : 'mobile-close mobile' : collapsed ? 'collapsed-close' : 'collapsed-open'}
       `
       }
       >

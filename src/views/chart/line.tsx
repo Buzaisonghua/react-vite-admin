@@ -100,14 +100,10 @@ function LineChart() {
     animationDuration: 2000, // 动画时长2秒
     animationEasing: 'cubicOut', // 缓动效果
   };
-  const clickOptions = () => {
-    // option.series[0].data = [2201, 1812, 1911, 1134, 1501, 1201, 1101, 1251, 1451, 1221, 1651, 1221];
-  };
   return (
-    <>
-      <div onClick={clickOptions}>11111111111111</div>
+    <div className="chart-box">
       <EchartsComponent option={option} />
-    </>
+    </div>
   );
 }
 
