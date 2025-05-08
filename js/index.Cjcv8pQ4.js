@@ -1,0 +1,1 @@
+import{u as a,j as s,S as i}from"./index.DoIMV950.js";function c(){const{mobile:o,collapsed:e}=a(r=>r.app);return s.jsx("div",{children:s.jsxs("div",{children:[o?"移动端":"PC端",e?"收起":"展开",s.jsx(i,{iconClass:"wind-cry"})]})})}export{c as default};

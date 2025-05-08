@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+
+<head>
+  <script>
+    // 自动重定向到首页并由 React Router 处理路由
+    const segment = 1
+    const redirect = sessionStorage.redirect
+    delete sessionStorage.redirect
+
+    if (redirect && redirect !== location.href) {
+      const newPath = redirect.replace(location.origin, '')
+      history.replaceState(null, null, newPath)
+    }
+
+    // 最终兜底重定向
+    window.history.replaceState({}, document.title, '/')
+    window.location.replace(location.href.replace(/\/(?:html|php|asp|aspx)\/.*$/, '/'))
+  </script>
+  <meta http-equiv="refresh" content="0; url=/" />
+</head>
+
+<body>
+  Redirecting...
+</body>
+
+</html>
